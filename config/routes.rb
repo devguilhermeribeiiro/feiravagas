@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
+  get "home/index"
+  get "home/unconfirmed"
+
   # Defines the root path route ("/")
-  # root "posts#index"
+  root "home#index"
 
   devise_for :job_seekers, controllers: {
     registrations: "job_seekers/registrations"
