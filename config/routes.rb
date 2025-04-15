@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
-  devise_for :job_seekers
+  # Defines the root path route ("/")
+  # root "posts#index"
+
+  devise_for :job_seekers, controllers: {
+    registrations: "job_seekers/registrations"
+  }
+
   devise_for :employers
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -10,7 +16,4 @@ Rails.application.routes.draw do
   # Render dynamic PWA files from app/views/pwa/* (remember to link manifest in application.html.erb)
   # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
-
-  # Defines the root path route ("/")
-  # root "posts#index"
 end
