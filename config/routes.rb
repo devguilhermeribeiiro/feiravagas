@@ -6,7 +6,10 @@ Rails.application.routes.draw do
     registrations: "job_seekers/registrations"
   }
 
-  devise_for :employers
+  devise_for :employers, controllers: {
+    registrations: "employers/registrations"
+  }
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
