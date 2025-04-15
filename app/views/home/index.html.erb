@@ -1,4 +1,52 @@
-<div>
-  <h1 class="font-bold text-4xl">Home#index</h1>
-  <p>Find me in app/views/home/index.html.erb</p>
+<div
+  class="
+    container flex flex-col items-center justify-center mx-auto min-h-screen py-8
+  "
+>
+  <%= render "header",
+  first_link: link_to("Candidate-se", start_path),
+  second_link: link_to("Contrate", jobs_path) %>
+
+  <% if notice.present? %>
+    <p
+      class="
+        py-2 px-3 bg-green-100 mt-24 text-green-500 text-center font-medium rounded-lg
+        inline-block
+      "
+      id="notice"
+    ><%= notice %></p>
+  <% end %>
+
+  <main
+    class="
+      flex flex-col items-center justify-center w-full px-4 sm:px-6 lg:px-8 mt-24
+      flex-1 text-center
+    "
+  >
+
+    <section>
+      <h1 class="text-5xl font-extrabold text-green-700 mb-6">Bem-vindo ao Feira Vagas</h1>
+      <p class="text-lg text-gray-700 mb-6">Conectando talentos e oportunidades em Feira de Santana.</p>
+    </section>
+
+    <section class="mb-12">
+      <%= image_tag "img.jpg",
+      alt:
+        "Imagem de um homen negro, sorrindo e apontando para um telefone na sua esqueda, o telefone está navegando na página principal do site",
+      class: "w-full max-w-xl mx-auto" %>
+    </section>
+
+    <section>
+      <div class="flex space-x-8">
+        <%= link_to "Candidatar-se",
+        start_path,
+        class:
+          "bg-green-700 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-lg transition ease-in-out duration-150" %>
+        <%= link_to "Anunciar vaga",
+        jobs_path,
+        class:
+          "bg-red-700 hover:bg-red-600 text-white font-bold py-3 px-6 rounded-lg transition ease-in-out duration-150" %>
+      </div>
+    </section>
+  </main>
 </div>
