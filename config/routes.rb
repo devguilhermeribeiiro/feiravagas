@@ -7,8 +7,8 @@ Rails.application.routes.draw do
   end
 
   resources :jobseekers, only: %i[show edit update destroy] do
-    get "jobs", to: "jobseekers#index"
-    get "jobs/:id", to: "jobseekers#job", as: :show_job
+    get "jobs", to: "jobseekers#index", as: :index
+    get "jobs/:id", to: "jobseekers#job", as: :jobs
 
     collection do
       get :unconfirmed
