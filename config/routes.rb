@@ -1,11 +1,13 @@
 Rails.application.routes.draw do
   resources :employers, only: %i[show edit update destroy] do
+    resources :jobs
     collection do
       get :unconfirmed
     end
   end
 
   resources :jobseekes, only: %i[show edit update destroy] do
+    resources :jobs, only: :show
     collection do
       get :unconfirmed
     end
