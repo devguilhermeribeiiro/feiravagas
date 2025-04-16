@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
-  get "home/index"
-  get "home/unconfirmed"
+  resources :employers, only: %i[show edit update destroy] do
+    collection do
+      get :unconfirmed
+    end
+  end
+
 
   # Defines the root path route ("/")
   root "home#index"
