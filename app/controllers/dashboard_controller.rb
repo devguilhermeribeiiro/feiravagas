@@ -1,4 +1,4 @@
-class EmployersController < ApplicationController
+class DashboardController < ApplicationController
   before_action :set_employer, only: %i[show edit update destroy]
   before_action :authenticate_employer!, except: :unconfirmed
 
@@ -27,7 +27,8 @@ class EmployersController < ApplicationController
   private
 
   def set_employer
-    @employer = Employer.find(params[:id])
+    redirect_to new_employer_registration_path if params[:id] == "sign_up"
+    @employer = Employer.find(params.expect(:id))
   end
 
   def employer_params

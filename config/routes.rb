@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     registrations: "employers/registrations"
   }
 
-  resources :employers, only: %i[show edit update destroy] do
+  resources :dashboard, only: %i[show edit update destroy] do
     resources :jobs
     collection do
       get :unconfirmed
