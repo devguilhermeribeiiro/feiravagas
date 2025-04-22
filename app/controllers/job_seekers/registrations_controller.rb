@@ -52,7 +52,7 @@ class JobSeekers::RegistrationsController < Devise::RegistrationsController
 
   # The path used after sign up.
   def after_sign_up_path_for(resource)
-    unconfirmed_jobseekers_path id resource.is_a?(JobSeeker)
+    unconfirmed_jobseekers_path if resource.is_a?(JobSeeker)
   end
 
   # The path used after sign up for inactive accounts.
