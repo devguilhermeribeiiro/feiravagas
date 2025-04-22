@@ -5,7 +5,7 @@
 >
   <%= render "header",
   first_link: link_to("Meu Perfil", jobseeker_path(current_job_seeker)),
-  second_link: button_to("Sair", destroy_jobseeker_session_path, method: :delete) %>
+  second_link: button_to("Sair", destroy_job_seeker_session_path, method: :delete) %>
 
   <% if notice.present? %>
     <p
