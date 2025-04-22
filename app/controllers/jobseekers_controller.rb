@@ -1,4 +1,5 @@
 class JobseekersController < ApplicationController
+  before_action :authenticate_job_seeker!
   def index
     jobs = Job.all
     @jobs = jobs.order(created_at: :desc)
