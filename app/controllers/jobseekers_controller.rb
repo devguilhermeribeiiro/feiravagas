@@ -1,7 +1,7 @@
 class JobseekersController < ApplicationController
   def index
     jobs = Job.all
-    @jobs = jobs.order_by(&:created_at).reverse
+    @jobs = jobs.order(created_at: :desc)
   end
 
   def job
