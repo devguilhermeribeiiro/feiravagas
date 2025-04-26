@@ -6,4 +6,6 @@ class Employer < ApplicationRecord
          :confirmable, :lockable, :timeoutable
 
   has_one_attached :avatar
+
+  has_many :jobs
 end
