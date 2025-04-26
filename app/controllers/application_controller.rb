@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
     if resource.is_a?(JobSeeker)
       jobseeker_index_path(resource)
     elsif resource.is_a?(Employer)
-      dashboard_jobs_path(resource)
+      jobs_path(resource)
     else
       root_path
     end
