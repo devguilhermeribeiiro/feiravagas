@@ -8,7 +8,6 @@ Rails.application.routes.draw do
   }
 
   resources :dashboard, only: %i[show edit update destroy] do
-    resources :jobs
     collection do
       get :unconfirmed
     end
@@ -22,6 +21,8 @@ Rails.application.routes.draw do
       get :unconfirmed
     end
   end
+
+  resources :jobs
 
   # Defines the root path route ("/")
   root "home#index"
