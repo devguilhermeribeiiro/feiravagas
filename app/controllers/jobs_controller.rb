@@ -1,70 +1,51 @@
 class JobsController < ApplicationController
+  before_action :authenticate_employer!
   before_action :set_job, only: %i[ show edit update destroy ]
 
-  # GET /jobs or /jobs.json
   def index
-    @jobs = Job.all
+    @jobs = Job.where(employer_id: current_employer)
   end
 
-  # GET /jobs/1 or /jobs/1.json
   def show
   end
 
-  # GET /jobs/new
   def new
     @job = Job.new
   end
 
-  # GET /jobs/1/edit
   def edit
   end
 
-  # POST /jobs or /jobs.json
   def create
     @job = Job.new(job_params)
 
-    respond_to do |format|
       if @job.save
-        format.html { redirect_to @job, notice: "Job was successfully created." }
-        format.json { render :show, status: :created, location: @job }
+        redirect_to @job, notice: "Job was successfully created."
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @job.errors, status: :unprocessable_entity }
+        render :new, status: :unprocessable_entity
       end
-    end
   end
 
-  # PATCH/PUT /jobs/1 or /jobs/1.json
   def update
-    respond_to do |format|
       if @job.update(job_params)
-        format.html { redirect_to @job, notice: "Job was successfully updated." }
-        format.json { render :show, status: :ok, location: @job }
+        redirect_to @job, notice: "Job was successfully updated."
       else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @job.errors, status: :unprocessable_entity }
+        render :edit, status: :unprocessable_entity
       end
-    end
   end
 
-  # DELETE /jobs/1 or /jobs/1.json
   def destroy
     @job.destroy!
 
-    respond_to do |format|
-      format.html { redirect_to jobs_path, status: :see_other, notice: "Job was successfully destroyed." }
-      format.json { head :no_content }
-    end
+      redirect_to jobs_path, status: :see_other, notice: "Job was successfully destroyed."
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_job
       @job = Job.find(params.expect(:id))
     end
 
-    # Only allow a list of trusted parameters through.
     def job_params
-      params.expect(job: [ :title, :description, :location, :mode, :requirements, :skills, :benefits, :salary, :employer_id ])
+      params.expect(job: [ :title, :description, :location, :mode, :requirements, :skills, :benefits, :salary ])
     end
 end
