@@ -119,35 +119,21 @@
 
   <div class="my-5">
     <%= form.label :salary %>
-    <%= form.textarea :salary,
-                  rows: 4,
-                  class: [
-                    "block shadow-sm rounded-md border px-3 py-2 mt-2 w-full",
-                    {
-                      "border-gray-400 focus:outline-blue-600":
-                        job.errors[:salary].none?,
-                      "border-red-400 focus:outline-red-600":
-                        job.errors[:salary].any?,
-                    },
-                  ] %>
-  </div>
-
-  <div class="my-5">
-    <%= form.label :employer_id %>
-    <%= form.text_field :employer_id,
+    <%= form.text_field :salary,
+                    rows: 4,
                     class: [
                       "block shadow-sm rounded-md border px-3 py-2 mt-2 w-full",
                       {
                         "border-gray-400 focus:outline-blue-600":
-                          job.errors[:employer_id].none?,
+                          job.errors[:salary].none?,
                         "border-red-400 focus:outline-red-600":
-                          job.errors[:employer_id].any?,
+                          job.errors[:salary].any?,
                       },
                     ] %>
   </div>
 
   <div class="inline">
     <%= form.submit class:
-                  "w-full sm:w-auto rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white inline-block font-medium cursor-pointer" %>
+                  "bg-green-600 hover:bg-green-400 text-white font-bold py-2 px-4 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500" %>
   </div>
 <% end %>

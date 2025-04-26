@@ -1,38 +1,23 @@
-<div id="<%= dom_id job %>" class="w-full sm:w-auto my-5 space-y-5">
-  <div>
-    <strong class="block font-medium mb-1">Title:</strong>
-    <%= job.title %>
+<div
+  id="<%= dom_id(job) %>"
+  class="transition-transform transform hover:scale-105"
+>
+  <!-- Job Header -->
+  <div class="flex flex-row justify-between items-center mb-4">
+    <p class="text-lg font-semibold text-green-700"><%= job.employer.company_name %></p>
+    <p class="text-sm text-gray-500"><%= job.created_at.strftime("%d/%m") %></p>
   </div>
-  <div>
-    <strong class="block font-medium mb-1">Description:</strong>
-    <%= job.description %>
+  <!-- Job Title -->
+  <div class="mb-4">
+    <h2 class="text-xl font-bold text-gray-800"><%= job.title %></h2>
   </div>
-  <div>
-    <strong class="block font-medium mb-1">Location:</strong>
-    <%= job.location %>
-  </div>
-  <div>
-    <strong class="block font-medium mb-1">Mode:</strong>
-    <%= job.mode %>
-  </div>
-  <div>
-    <strong class="block font-medium mb-1">Requirements:</strong>
-    <%= job.requirements %>
-  </div>
-  <div>
-    <strong class="block font-medium mb-1">Skills:</strong>
-    <%= job.skills %>
-  </div>
-  <div>
-    <strong class="block font-medium mb-1">Benefits:</strong>
-    <%= job.benefits %>
-  </div>
-  <div>
-    <strong class="block font-medium mb-1">Salary:</strong>
-    <%= job.salary %>
-  </div>
-  <div>
-    <strong class="block font-medium mb-1">Employer:</strong>
-    <%= job.employer_id %>
+  <!-- Job Details -->
+  <div class="flex flex-col text-gray-600">
+    <p class="mb-1"><strong>Localização:</strong>
+      <%= job.location %></p>
+    <p class="mb-1"><strong>Modalidade:</strong>
+      <%= job.mode %></p>
+    <p><strong>Candidaturas:</strong>
+      <%= job.applications.count %></p>
   </div>
 </div>

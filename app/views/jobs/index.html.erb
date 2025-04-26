@@ -1,54 +1,42 @@
 <% content_for :title, "Jobs" %>
 
-<div class="w-full">
-  <% if notice.present? %>
-    <p
-      class="
-        py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-md inline-block
-      "
-      id="notice"
-    ><%= notice %></p>
-  <% end %>
+<div
+  class="
+    container flex flex-col items-center justify-center mx-auto min-h-screen py-8
+  "
+>
+  <%= render "header",
+  first_link: link_to("Meu Perfil", dashboard_path(current_employer)),
+  second_link: button_to("Sair", destroy_employer_session_path, method: :delete) %>
 
-  <div class="flex justify-between items-center">
-    <h1 class="font-bold text-4xl">Jobs</h1>
-    <%= link_to "New job",
-    new_dashboard_job_path,
-    class:
-      "rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white block font-medium" %>
-  </div>
-
-  <div id="jobs" class="min-w-full divide-y divide-gray-200 space-y-5">
-    <% if @jobs.any? %>
-      <% @jobs.each do |job| %>
-        <div
+  <section
+    class="w-11/12 xl:w-full lg:px-8 mx-auto mt-28 flex flex-col items-center"
+  >
+    <% if notice.present? %>
+      <span class="flex place-items-start">
+        <p
           class="
-            flex flex-col sm:flex-row justify-between items-center pb-5 sm:pb-0
+            py-2 px-3 bg-green-50 mb-5 text-green-500 text-center mx-auto font-medium
+            rounded-lg inline-bloc
           "
-        >
-          <%= render job %>
-          <div class="w-full sm:w-auto flex flex-col sm:flex-row space-x-2 space-y-2">
-            <%= link_to "Show",
-            job,
-            class:
-              "w-full sm:w-auto text-center rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
-            <%= link_to "Edit",
-            edit_job_path(job),
-            class:
-              "w-full sm:w-auto text-center rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
-            <%= button_to "Destroy",
-            job,
-            method: :delete,
-            class:
-              "w-full sm:w-auto rounded-md px-3.5 py-2.5 text-white bg-red-600 hover:bg-red-500 font-medium cursor-pointer",
-            data: {
-              turbo_confirm: "Are you sure?",
-            } %>
-          </div>
-        </div>
-      <% end %>
-    <% else %>
-      <p class="text-center my-10">No jobs found.</p>
+          id="notice"
+        ><%= notice %></p>
+      </span>
     <% end %>
-  </div>
+
+    <%= link_to "Criar vaga",
+    new_job_path,
+    class:
+      "bg-green-500 hover:bg-green-600 text-white font-semibold p-2 rounded-md shadow-md" %>
+
+    <section class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
+      <% @jobs.each do |job| %>
+        <%= link_to job_path(job), class: "md:transform md:hover:scale-105 transition-transform duration-200 ease-in-out" do %>
+          <div class="bg-white overflow-hidden shadow-lg rounded-lg p-6">
+            <%= render "job", job: job %>
+          </div>
+        <% end %>
+      <% end %>
+    </section>
+  </section>
 </div>

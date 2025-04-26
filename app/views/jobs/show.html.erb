@@ -1,15 +1,72 @@
-<% content_for :title, "Showing job" %>
+<div class="container mx-auto min-h-screen flex flex-col items-center">
+  <%= render "header",
+  first_link: link_to("Meu Perfil", dashboard_path(current_employer)),
+  second_link: button_to("Sair", destroy_employer_session_path, method: :delete) %>
 
-<div class="md:w-2/3 w-full">
-  <% if notice.present? %>
-    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-md inline-block" id="notice"><%= notice %></p>
-  <% end %>
+  <main class="w-full xl:w-3/4 bg-white shadow-lg rounded-lg p-8 mt-32">
+    <% if notice.present? %>
+      <p
+        class="
+          py-2 px-3 bg-green-100 mb-5 text-green-500 text-center font-medium rounded-lg
+          inline-block
+        "
+        id="notice"
+      ><%= notice %></p>
+    <% end %>
 
-  <h1 class="font-bold text-4xl">Showing job</h1>
+    <aside class="flex flex-col items-end mt-2" data-controller="dropdown">
+      <button
+        data-action="click->dropdown#toggle"
+        aria-label="Menu"
+        class="bg-green-500 hover:bg-green-600 text-white p-1 rounded-md"
+      >
+        <svg
+          class="w-6 h-6"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M4 6h16M4 12h16M4 18h16"
+          ></path>
+        </svg>
+      </button>
 
-  <%= render @job %>
+      <section
+        data-dropdown-target="menu"
+        class="
+          absolute flex flex-col hidden gap-4 p-4 mt-12 bg-white rounded-md shadow-lg
+        "
+      >
+        <%= link_to "Editar vaga",
+        edit_job_path(@job),
+        class:
+          "bg-green-500 hover:bg-green-600 p-3 rounded-md text-white font-bold text-md" %>
+        <%= button_to "Excluir vaga",
+        @job,
+        method: :delete,
+        class: "bg-red-500 hover:bg-red-600 p-3 rounded-md text-white font-bold text-md" %>
+      </section>
+    </aside>
 
-  <%= link_to "Edit this job", edit_job_path(@job), class: "w-full sm:w-auto text-center rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
-  <%= link_to "Back to jobs", jobs_path, class: "w-full sm:w-auto text-center mt-2 sm:mt-0 sm:ml-2 rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
-  <%= button_to "Destroy this job", @job, method: :delete, form_class: "sm:inline-block mt-2 sm:mt-0 sm:ml-2", class: "w-full rounded-md px-3.5 py-2.5 text-white bg-red-600 hover:bg-red-500 font-medium cursor-pointer", data: { turbo_confirm: "Are you sure?" } %>
+    <%= render "job_information", job: @job %>
+
+    <div class="mt-8">
+      <%= link_to "Ver candidaturas",
+      applyers_job_path,
+      class:
+        "bg-green-500 px-3 py-3 rounded-md hover:bg-green-600 text-white font-bold text-md" %>
+    </div>
+  </main>
+
+  <div class="mt-8">
+    <%= link_to "Ir para Vagas",
+    jobs_path,
+    class:
+      "text-green-600 hover:bg-green-200  py-3 p-4 rounded-md text-md font-bold" %>
+  </div>
 </div>
