@@ -13,7 +13,7 @@ class DashboardController < ApplicationController
 
   def update
     if @employer.update(employer_params)
-      redirect_to employer_url(@employer), notice: "Perfil atualizado com sucesso"
+      redirect_to dashboard_url(@employer), notice: "Perfil atualizado com sucesso"
     else
       render :edit, status: :unprocessable_entity
     end
