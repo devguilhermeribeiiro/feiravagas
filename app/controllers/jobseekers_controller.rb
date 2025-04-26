@@ -8,6 +8,12 @@ class JobseekersController < ApplicationController
   def job
     @job = Job.find(params.expect(:id))
   end
+
+  def apply
+    @job = Job.find(params.expect(:id))
+    @job.candidatures.create(job_seeker: current_job_seeker)
+  end
+
   def show
   end
 
