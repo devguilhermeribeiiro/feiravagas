@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   resources :jobseekers, only: %i[show edit update destroy] do
     get "jobs", to: "jobseekers#index", as: :index
     get "jobs/:id", to: "jobseekers#job", as: :jobs
+    get "candidatures", to: "jobseekers#candidatures"
 
     collection do
       get :unconfirmed
