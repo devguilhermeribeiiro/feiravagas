@@ -1,24 +1,6 @@
-# README
+#README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+#Setup database image for development
 
-Things you may want to cover:
+"docker run --name postgres-dev -e POSTGRES_USER=feiravagas -e POSTGRES_PASSWORD=feiravagas -e  POSTGRES_DB=feiravagas -p 5432:5432 -v pgdata:/var/lib/postgresql/data -d postgres:16"
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
