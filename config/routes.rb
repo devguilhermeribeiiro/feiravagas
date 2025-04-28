@@ -1,15 +1,17 @@
 Rails.application.routes.draw do
   devise_for :job_seekers, controllers: {
-    registrations: "job_seekers/registrations"
+    registrations: "job_seekers/registrations",
+    confirmations: "job_seekers/confirmations"
   }
 
   devise_for :employers, controllers: {
-    registrations: "employers/registrations"
+    registrations: "employers/registrations",
+    confirmations: "employers/confirmations"
   }
 
   resources :dashboard, only: %i[show edit update destroy] do
     collection do
-      get :unconfirmed
+      get :unconfirmed, to: "dashboard#unconfirmed"
     end
   end
 
@@ -19,7 +21,7 @@ Rails.application.routes.draw do
     get "candidatures", to: "jobseekers#candidatures"
 
     collection do
-      get :unconfirmed
+      get :unconfirmed, to: "jobseekers#unconfirmed"
     end
   end
 
