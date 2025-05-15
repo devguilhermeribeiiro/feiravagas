@@ -62,4 +62,4 @@ gem "tailwindcss-rails", "~> 4.2"
 
 gem "devise", "~> 4.9"
 
-gem "erb", "~> 4.0"
+gem "erb", "~> 5.0"
